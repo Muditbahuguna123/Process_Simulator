@@ -1,54 +1,78 @@
+/* Base body and container styling */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f5f5f5;
   padding: 20px;
+  margin: 0;
+  color: #333;
 }
 
 .container {
   max-width: 900px;
   margin: auto;
   background: white;
-  padding: 30px;
+  padding: 30px 40px;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Headers */
 h1, h2 {
   text-align: center;
-  color: #333;
+  color: #222;
+  margin-bottom: 24px;
 }
 
+/* Input section styling */
 .input-section {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
-input {
-  padding: 8px;
+input[type="text"],
+input[type="number"] {
+  padding: 10px 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  font-size: 16px;
+  width: 140px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
 }
 
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styles */
 button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
-  background: #007bff;
+  background-color: #007bff;
   color: white;
+  font-weight: 600;
+  font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0,123,255,0.3);
 }
 
 button:hover {
-  background: #0056b3;
+  background-color: #0056b3;
 }
 
+/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 20px 0 10px;
+  font-size: 16px;
 }
 
 table, th, td {
@@ -56,69 +80,148 @@ table, th, td {
 }
 
 th, td {
-  padding: 10px;
+  padding: 12px 15px;
   text-align: center;
+  color: #444;
 }
 
+th {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  user-select: none;
+}
+
+/* Gantt chart container */
 #ganttWrapper {
-  margin-top: 20px;
+  margin-top: 30px;
   position: relative;
 }
 
+/* Gantt chart area */
 #ganttChart {
   display: flex;
   align-items: center;
-  min-height: 60px;
+  min-height: 50px;
   overflow-x: auto;
   border: 1px solid #ccc;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #f9f9f9;
+  scrollbar-width: thin;
+  scrollbar-color: #007bff #eee;
 }
 
+/* Scrollbar styling for Webkit */
+#ganttChart::-webkit-scrollbar {
+  height: 8px;
+}
+
+#ganttChart::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 10px;
+}
+
+#ganttChart::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 10px;
+}
+
+/* Individual gantt blocks */
 .gantt-block {
   min-width: 40px;
   height: 40px;
-  margin-right: 2px;
+  margin-right: 3px;
   border-radius: 10px;
   text-align: center;
   line-height: 40px;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   position: relative;
-  transition: transform 0.3s;
+  user-select: none;
+  transition: transform 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
 .gantt-block:hover {
   transform: scale(1.1);
-  z-index: 1;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* Tooltip on gantt blocks */
 .gantt-block[data-tooltip]:hover::after {
   content: attr(data-tooltip);
   position: absolute;
-  top: -28px;
+  top: -32px;
   left: 50%;
   transform: translateX(-50%);
   background: #333;
-  color: white;
-  padding: 4px 8px;
+  color: #fff;
+  padding: 6px 10px;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: 13px;
   white-space: nowrap;
   pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
+/* Time labels below gantt */
 #timeLabels {
   display: flex;
   justify-content: flex-start;
-  font-size: 12px;
-  margin-top: 5px;
-  padding-left: 10px;
+  font-size: 13px;
+  margin-top: 8px;
+  padding-left: 12px;
+  user-select: none;
 }
 
 #timeLabels span {
   min-width: 40px;
   text-align: center;
-  margin-left: 2px;
+  margin-left: 3px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Average times text */
+#averages {
+  margin-top: 18px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+  user-select: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .input-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  button {
+    width: 80%;
+    max-width: 280px;
+  }
+
+  #ganttChart {
+    min-height: 40px;
+    padding: 8px;
+  }
+
+  .gantt-block {
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+  }
+
+  #timeLabels span {
+    min-width: 30px;
+    font-size: 11px;
+  }
 }

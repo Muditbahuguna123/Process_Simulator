@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FCFS Scheduling Simulator</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Process Scheduling Simulator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>FCFS Scheduling Simulator</h1>
+    <h1>Process Scheduling Simulator</h1>
 
-    <!-- Form for adding process -->
+    <!-- Algorithm selector + Form -->
     <form id="inputForm" onsubmit="addProcess(event)" class="input-section">
-      <input type="text" id="pid" placeholder="Process ID (e.g. P1)" required>
-      <input type="number" id="arrivalTime" placeholder="Arrival Time" required>
-      <input type="number" id="burstTime" placeholder="Burst Time" required>
+      <select id="algorithm" onchange="togglePriorityInput()" required>
+        <option value="fcfs">FCFS</option>
+        <option value="sjf">SJF</option>
+        <option value="srtf">SRTF</option>
+        <option value="rr">Round Robin</option>
+        <option value="priority">Priority Scheduling</option>
+      </select>
+
+      <input type="text" id="pid" placeholder="Process ID (e.g. P1)" required />
+      <input type="number" id="arrivalTime" placeholder="Arrival Time" required />
+      <input type="number" id="burstTime" placeholder="Burst Time" required />
+
+      <input
+        type="number"
+        id="priority"
+        placeholder="Priority"
+        min="1"
+        style="display: none;"
+      />
+
       <button type="submit">Add Process</button>
     </form>
 
+    <!-- Run button -->
     <div class="input-section">
-      <button onclick="runFCFS()">Run FCFS</button>
+        <button type="button" onclick="runSelectedAlgorithm()">Run</button>
+        <button type="button" onclick="resetSimulator()">Reset</button>
     </div>
 
+
+    <!-- Process List -->
     <h2>Process List</h2>
     <table id="processTable">
       <tr><th>PID</th><th>Arrival</th><th>Burst</th></tr>
@@ -41,6 +62,11 @@
     <div id="averages"></div>
 
     <script src="fcfs.js"></script>
+    <script src="sjf.js"></script>
+    <script src="srtf.js"></script>
+    <script src="rr.js"></script>
+    <script src="priority.js"></script>
+    <script src="scheduler.js"></script>
   </div>
 </body>
 </html>
