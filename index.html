@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FCFS Scheduling Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>FCFS Scheduling Simulator</h1>
+
+    <!-- Form for adding process -->
+    <form id="inputForm" onsubmit="addProcess(event)" class="input-section">
+      <input type="text" id="pid" placeholder="Process ID (e.g. P1)" required>
+      <input type="number" id="arrivalTime" placeholder="Arrival Time" required>
+      <input type="number" id="burstTime" placeholder="Burst Time" required>
+      <button type="submit">Add Process</button>
+    </form>
+
+    <div class="input-section">
+      <button onclick="runFCFS()">Run FCFS</button>
+    </div>
+
+    <h2>Process List</h2>
+    <table id="processTable">
+      <tr><th>PID</th><th>Arrival</th><th>Burst</th></tr>
+    </table>
+
+    <!-- Gantt Chart -->
+    <h2>Gantt Chart</h2>
+    <div id="ganttWrapper">
+      <div id="ganttChart"></div>
+      <div id="timeLabels"></div>
+    </div>
+
+    <!-- Results -->
+    <h2>Results</h2>
+    <table id="resultTable">
+      <tr><th>PID</th><th>Completion</th><th>Turnaround</th><th>Waiting</th></tr>
+    </table>
+    <div id="averages"></div>
+
+    <script src="fcfs.js"></script>
+  </div>
+</body>
+</html>
