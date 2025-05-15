@@ -120,4 +120,5 @@ th, td {
 #timeLabels span {
   min-width: 40px;
   text-align: center;
+  margin-left: 2px;
 }

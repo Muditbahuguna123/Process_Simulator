@@ -12,7 +12,6 @@ function addProcess(event) {
     alert("Enter valid process details.");
     return;
   }
-
   processes.push({ pid, arrival, burst, remaining: burst });
   updateProcessTable();
 
