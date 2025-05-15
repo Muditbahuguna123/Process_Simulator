@@ -4,7 +4,11 @@ let clock = 0;
 
 document.getElementById("algorithm").addEventListener("change", function () {
   const algo = this.value;
-  document.getElementById("timeQuantum").style.display = algo === "rr" ? "inline-block" : "none";
+  if (algo === "rr") {
+    document.getElementById("timeQuantum").style.display = "inline-block";
+  } else {
+    document.getElementById("timeQuantum").style.display = "none";
+  }
 });
 
 function togglePriorityInput() {
