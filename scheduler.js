@@ -130,7 +130,7 @@ function appendGanttBlock(pid, color, tooltip) {
   block.setAttribute("data-tooltip", tooltip);
   document.getElementById("ganttChart").appendChild(block);
   const timeLabel = document.createElement("span");
-  timeLabel.innerText = clock;
+  timeLabel.innerText = window.clock;
   document.getElementById("timeLabels").appendChild(timeLabel);
 }
 
